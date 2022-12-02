@@ -1,5 +1,5 @@
 header {
-    background-color: #F39722;
+    background-color: #14279B;
 }
 
 header>nav {
@@ -50,8 +50,7 @@ nav>ul>li {
 .nav-link {
     flex-direction: column;
     font-size: 20px;
-    background-color: #364789;
-    display: none;
+    background-color:  #3D56B2;
 }
 
 .nav-link>li {
@@ -76,6 +75,10 @@ nav>ul>li {
     color: #002B5B;
 }
 
+.hidden {
+    display: none !important; 
+}
+
 @media only screen and (min-width: 700px) {
     .nav-title>button {
       visibility: hidden;
@@ -88,7 +91,7 @@ nav>ul>li {
     .nav-link {
       display: flex;
       flex-direction: row;
-      background-color: #F39722;
+      background-color: #14279B;
     }
   
     .nav-title {

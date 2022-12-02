@@ -43,10 +43,6 @@ const Get_myData = gql`
 export class MenuComponent implements OnInit {
   alldata: menu[] = [];
   constructor(private menuService: MenuService) {
-    localStorage.setItem(
-      environment.tokenKey,
-      JSON.stringify('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsInBhc3N3b3JkIjoiJDJiJDA1JEpzSmdqWERCeE16RHJEelQxU2J3T3VaRy5xWHQvbko3NURiaFJoTktFT3Fqc3VzMkZrNE1DIiwicm9sZSI6ImFkbWluIiwidXNlcl9pZCI6IjYzN2VkM2QyNWVjZmNmMmM5ZmZlYjYwZiIsImlhdCI6MTY2OTg4NzE1MiwiZXhwIjoxNjY5OTczNTUyfQ.BK49TlfDUqeN2JBuZsCVbTaqJys6gzIuAdPuE6-LzYU')
-    );
   }
 
   ngOnInit(): void {

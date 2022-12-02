@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navigation',
@@ -6,10 +7,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navigation.component.css']
 })
 export class NavigationComponent implements OnInit {
-
-  constructor() { }
+  isHidden = false;
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  toggleButton(element : any){
+    this.isHidden = !this.isHidden;
+  }
+
+  isAuthed(){
+    return localStorage.getItem("token") ? true : false;
+  }
+
+  logout(){
+    localStorage.removeItem("token");
+    this.router.navigate(['/home']);
   }
 
 }
