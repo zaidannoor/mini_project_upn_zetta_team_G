@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { MenuRoutingModule } from './menu-routing.module';
 import { MenuComponent } from './menu/menu.component';
-import { ApolloModule } from 'apollo-angular';
 
 @NgModule({
   declarations: [
@@ -12,7 +11,6 @@ import { ApolloModule } from 'apollo-angular';
   imports: [
     CommonModule,
     MenuRoutingModule,
-    ApolloModule,
   ]
 })
 export class MenuModule { }

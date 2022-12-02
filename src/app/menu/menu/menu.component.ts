@@ -1,21 +1,35 @@
 import { Component, OnInit } from '@angular/core';
 import { gql, Apollo } from 'apollo-angular';
+import { environment } from 'src/environments/environment';
+import { MenuService } from '../menu.service'
+
 interface menu {
   id: string;
-  name: string;
-  stock: number;
+  recipe_name: string;
+  ingredients: number;
+  description: string;
   status: string;
-  
+  image: string;
+  price: number;
 }
 
 const Get_myData = gql`
   query {
-    GetAllIngredients {
-      data {
+    GetAllRecipes {
+      data_recipes {
         id
-        name
-        stock
+        recipe_name
+        ingredients{ids 
+          {id 
+            name 
+            stock 
+            status
+          } 
+          stock_used}
+        description
         status
+        image
+        price
       }
     }
   }
@@ -28,19 +42,16 @@ const Get_myData = gql`
 })
 export class MenuComponent implements OnInit {
   alldata: menu[] = [];
-  constructor(private apollo: Apollo) {}
+  constructor(private menuService: MenuService) {
+    localStorage.setItem(
+      environment.tokenKey,
+      JSON.stringify('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsInBhc3N3b3JkIjoiJDJiJDA1JEpzSmdqWERCeE16RHJEelQxU2J3T3VaRy5xWHQvbko3NURiaFJoTktFT3Fqc3VzMkZrNE1DIiwicm9sZSI6ImFkbWluIiwidXNlcl9pZCI6IjYzN2VkM2QyNWVjZmNmMmM5ZmZlYjYwZiIsImlhdCI6MTY2OTg4NzE1MiwiZXhwIjoxNjY5OTczNTUyfQ.BK49TlfDUqeN2JBuZsCVbTaqJys6gzIuAdPuE6-LzYU')
+    );
+  }
 
   ngOnInit(): void {
-    this.apollo
-      .watchQuery<any>({
-        query: Get_myData,
-      })
-      .valueChanges.subscribe((response) => {
-        console.log(response);
-        if (response) {
-          this.alldata = response.data.GetAllIngredients.data;
-          console.log(this.alldata);
-        }
-      });
+    this.menuService.getAllMenu().subscribe((res) => {
+      console.log(res);
+    })
   }
 }

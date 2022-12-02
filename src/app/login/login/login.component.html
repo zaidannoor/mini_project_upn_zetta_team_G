@@ -1,1 +1,22 @@
-<p>login works!</p>
+<div class="login-container">
+  <h1>Login</h1>
+  <form action="" [formGroup]="loginForm">
+    <div class="form-input">
+      <input
+        type="email"
+        placeholder="Email, example@gmail.com"
+        formControlName="email"
+        required
+      />
+    </div>
+    <div class="form-input">
+      <input
+        type="password"
+        placeholder="Password"
+        formControlName="password"
+        required
+      />
+    </div>
+    <button class="login-button" type="submit" (click)="login()">Login</button>
+  </form>
+</div>
