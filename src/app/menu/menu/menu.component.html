@@ -1,6 +1,21 @@
 <h1>Daftar Menu</h1>
 <div class="menu-list">
-    <div class="card" *ngFor="let menu of alldata">
-        
+    <div class="card" *ngFor="let menu of menus">
+        <div class="card-img">
+            <img src="{{ menu.image }}" alt="">
+        </div>
+        <div class="card-body">
+            <h3 class="card-title">{{ menu.recipe_name }}</h3>
+            <p class="card-description">{{ menu.description }}</p>
+        </div>
+        <div class="card-footer">
+            <form action="">
+                <div class="amount-form">
+                    <h4>Amount</h4>
+                    <input type="number" id="amount-form" placeholder="amount to buy">
+                </div>
+                <button class="amount-button" type="submit">Add to Cart</button>
+            </form>
+        </div>
     </div>
 </div>

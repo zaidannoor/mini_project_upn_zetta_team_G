@@ -41,13 +41,15 @@ const Get_myData = gql`
   styleUrls: ['./menu.component.css'],
 })
 export class MenuComponent implements OnInit {
-  alldata: menu[] = [];
+  menus: menu[] = [];
   constructor(private menuService: MenuService) {
   }
 
   ngOnInit(): void {
     this.menuService.getAllMenu().subscribe((res) => {
-      console.log(res);
+      this.menus = res;
+      console.log(this.menus);
     })
   }
+  
 }
