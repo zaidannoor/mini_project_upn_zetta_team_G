@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { gql, Apollo } from 'apollo-angular';
-import { environment } from 'src/environments/environment';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MenuService } from '../menu.service'
 import { CartService } from '../../cart/cart.service'
+import { SubSink } from 'subsink';
 
-interface menu {
+interface Menu {
   id: string;
   recipe_name: string;
   ingredients: number;
@@ -14,27 +15,11 @@ interface menu {
   price: number;
 }
 
-const Get_myData = gql`
-  query {
-    GetAllRecipes {
-      data_recipes {
-        id
-        recipe_name
-        ingredients{ids 
-          {id 
-            name 
-            stock 
-            status
-          } 
-          stock_used}
-        description
-        status
-        image
-        price
-      }
-    }
-  }
-`;
+interface Order{
+  id: string,
+  amount: number,
+  note: string
+}
 
 @Component({
   selector: 'app-menu',
@@ -42,9 +27,14 @@ const Get_myData = gql`
   styleUrls: ['./menu.component.css'],
 })
 export class MenuComponent implements OnInit {
-  menus: menu[] = [];
-  // tes : any[] = [];
-  constructor(private menuService: MenuService, private cartService: CartService) {
+  private subs = new SubSink();
+  menus: Menu[] = [];
+  cartForm: FormGroup = this.initFormGroup();
+
+  constructor(private menuService: MenuService, 
+    private cartService: CartService,
+    private fb: FormBuilder
+    ) {
   }
 
   ngOnInit(): void {
@@ -60,16 +50,25 @@ export class MenuComponent implements OnInit {
     this.cartService.getAllTransaction().subscribe((res) => {
       console.log(res);
     })
-
-    // this.menuService.getMenuById("6385babf5ecfcf2c9ffeb676").subscribe((res) => {
-    //   console.log(res);
-    // })
   }
 
-  cek(event: any){
-    this.cartService.addToCart(event.target.id).subscribe((res) => {
-      console.log(res);
-    })
+  initFormGroup() {
+    return this.fb.group({
+      amount: [1],
+      note: ['-'],
+    });
+  }
+
+  add(event: any){
+    const order: Order = this.cartForm.value;
+    this.subs.sink = this.cartService
+      .addToCart(event.target.id, order.amount, order.note)
+      .subscribe((resp) => {
+        console.log(resp);
+      });
+    // this.cartService.addToCart(event.target.id).subscribe((res) => {
+    //   console.log(res);
+    // })
     console.log(event.target.id);
   }
   

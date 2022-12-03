@@ -9,15 +9,15 @@ export class CartService {
 
   constructor(private apollo: Apollo) { }
 
-  addToCart(id: any){
+  addToCart(id: any, amount: number, note: string){
     return this.apollo.mutate<any>(
       {mutation: gql`
         mutation{
           addCart(
             input:{
               recipe_id: "${id}"
-              amount: 1
-              note: "dibungkus"
+              amount: ${amount}
+              note: "${note}"
             }
             
           ){

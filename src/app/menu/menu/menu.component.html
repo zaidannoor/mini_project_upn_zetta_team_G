@@ -9,12 +9,15 @@
             <p class="card-price">Rp. {{ menu.price }}</p>
         </div>
         <div class="card-footer">
-            <form action="">
+            <form action="" [formGroup]="cartForm">
                 <div class="amount-form">
-                    <h4>Amount</h4>
-                    <input type="number" id="amount-form" placeholder="amount to buy">
+                    <h4>Order</h4>
+                    <label for="amount-form">Jumlah</label>
+                    <input type="number" id="amount-form" placeholder="Amount to buy" formControlName="amount">
+                    <label for="note-form">Note</label>
+                    <input type="text" id="note-form" placeholder="Give your note" formControlName="note">
                 </div>
-                <button id="{{ menu.id }}" class="amount-button" type="button" (click)="cek($event)">Add to Cart</button>
+                <button id="{{ menu.id }}" class="amount-button" type="button" (click)="add($event)">Add to Cart</button>
             </form>
         </div>
     </div>
