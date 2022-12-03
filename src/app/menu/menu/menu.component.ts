@@ -42,6 +42,7 @@ const Get_myData = gql`
 })
 export class MenuComponent implements OnInit {
   menus: menu[] = [];
+  // tes : any[] = [];
   constructor(private menuService: MenuService) {
   }
 
@@ -50,6 +51,11 @@ export class MenuComponent implements OnInit {
       this.menus = res;
       console.log(this.menus);
     })
+
+    // this.menuService.getMenuById().subscribe((res) => {
+    //   // tes = res;
+    //   console.log(res);
+    // })
   }
   
 }

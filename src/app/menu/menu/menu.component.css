@@ -37,8 +37,15 @@ h1{
     text-align: center;
 }
 
-.card-description{
-    font-size: 18px
+.card-title > a{
+    text-decoration: none;
+    color: black;
+}
+
+.card-price{
+    font-size: 18px;
+    text-align: center;
+    font-weight: bold;
 }
 
 .card-footer{
