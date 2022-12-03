@@ -5,8 +5,11 @@ app-navigation{
 }
 
 main{
-    margin: 30px;
     font-family: 'Poppins', sans-serif;
+}
+
+.dark{
+    background-color: rgba(27,28,30,255);
 }
 
 footer{

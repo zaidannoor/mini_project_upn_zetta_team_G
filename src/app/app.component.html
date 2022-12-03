@@ -1,5 +1,5 @@
 <app-navigation></app-navigation>
-<main>
+<main [ngClass]="inHomePage() ? 'dark' : '' ">
    <router-outlet></router-outlet> 
 </main>
 
