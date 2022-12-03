@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { gql, Apollo } from 'apollo-angular';
 import { environment } from 'src/environments/environment';
 import { MenuService } from '../menu.service'
+import { CartService } from '../../cart/cart.service'
 
 interface menu {
   id: string;
@@ -43,7 +44,7 @@ const Get_myData = gql`
 export class MenuComponent implements OnInit {
   menus: menu[] = [];
   // tes : any[] = [];
-  constructor(private menuService: MenuService) {
+  constructor(private menuService: MenuService, private cartService: CartService) {
   }
 
   ngOnInit(): void {
@@ -52,10 +53,24 @@ export class MenuComponent implements OnInit {
       console.log(this.menus);
     })
 
-    // this.menuService.getMenuById().subscribe((res) => {
-    //   // tes = res;
+    // this.cartService.addToCart("6385bdd35ecfcf2c9ffeb6c3").subscribe((res) => {
     //   console.log(res);
     // })
+
+    this.cartService.getAllTransaction().subscribe((res) => {
+      console.log(res);
+    })
+
+    // this.menuService.getMenuById("6385babf5ecfcf2c9ffeb676").subscribe((res) => {
+    //   console.log(res);
+    // })
+  }
+
+  cek(event: any){
+    this.cartService.addToCart(event.target.id).subscribe((res) => {
+      console.log(res);
+    })
+    console.log(event.target.id);
   }
   
 }

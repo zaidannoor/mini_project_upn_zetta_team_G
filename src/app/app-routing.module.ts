@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
 import { LoginGuard } from './auth/login.guard';
+import { MenuComponent } from './menu/menu/menu.component';
+import { MenuDetailComponent } from './menu/menu-detail/menu-detail.component';
 const routes: Routes = [
   {
     path :'login',

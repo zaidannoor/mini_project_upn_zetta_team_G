@@ -5,7 +5,7 @@
             <img src="{{ menu.image }}" alt="">
         </div>
         <div class="card-body">
-            <h3 class="card-title"><a href="">{{ menu.recipe_name }}</a></h3>
+            <h3 class="card-title"><a href="/menu/{{ menu.id }}">{{ menu.recipe_name }}</a></h3>
             <p class="card-price">Rp. {{ menu.price }}</p>
         </div>
         <div class="card-footer">
@@ -14,7 +14,7 @@
                     <h4>Amount</h4>
                     <input type="number" id="amount-form" placeholder="amount to buy">
                 </div>
-                <button class="amount-button" type="submit">Add to Cart</button>
+                <button id="{{ menu.id }}" class="amount-button" type="button" (click)="cek($event)">Add to Cart</button>
             </form>
         </div>
     </div>

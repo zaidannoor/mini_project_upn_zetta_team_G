@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MenuService } from '../menu.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-menu-detail',
@@ -6,10 +8,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./menu-detail.component.css']
 })
 export class MenuDetailComponent implements OnInit {
-
-  constructor() { }
+  param: any;
+  detailMenu: any;
+  
+  constructor(private menuService: MenuService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.param = this.route.snapshot.params['id'];
+    this.menuService.getMenuById(this.param).subscribe((res) => {
+      this.detailMenu = res.data['GetOneRecipes'];
+      console.log(this.detailMenu)
+    })
   }
 
 }

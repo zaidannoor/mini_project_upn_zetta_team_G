@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
+import { gql, Apollo } from 'apollo-angular';
+import { map } from 'rxjs/operators';
+import { CartService } from '../cart.service';
 
 @Component({
   selector: 'app-cart',
@@ -7,9 +11,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CartComponent implements OnInit {
 
-  constructor() { }
+  constructor(private cartService: CartService) { }
 
   ngOnInit(): void {
+    this.cartService.getAllTransaction().subscribe((res) => {
+      console.log(res);
+    })
   }
 
 }

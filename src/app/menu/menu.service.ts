@@ -34,19 +34,19 @@ export class MenuService {
     return this.apollo.query<any>({query: Get_myData}).pipe(map(data => data.data['GetAllRecipes'].data_recipes ));
   }
 
-  // getMenuById(id : any = "6385babf5ecfcf2c9ffeb676"){
-  //   return this.apollo.query<any>({query: gql`
-  //   query(${id}: any){
-  //     GetOneRecipes(id: ${id}){
-  //       id
-  //       recipe_name
-  //       status
-  //       description
-  //       image
-  //       price
-  //     }
-  //   }
-  //   `
-  // }).pipe(map(data => data ));
-  // }
+  getMenuById(id : any){
+    return this.apollo.watchQuery<any>({query: gql`
+    query{
+      GetOneRecipes(id: "${id}"){
+        id
+        recipe_name
+        status
+        description
+        image
+        price
+      }
+    }
+    `
+  }).valueChanges;
+  }
 }
