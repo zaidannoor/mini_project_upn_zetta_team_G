@@ -1,0 +1,27 @@
+.cart-container{
+    padding: 30px;
+    border: 1px solid black;
+}
+
+.cart-container > h1 {
+    font-size: 36px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.transaction{
+    display: flex;
+}
+
+.cart{
+    flex: 1;
+    border: 1px solid gold;
+    margin: 20px;
+}
+
+.payment{
+    flex: 1;
+    margin: 20px;
+    border: 1px solid salmon;
+
+}
