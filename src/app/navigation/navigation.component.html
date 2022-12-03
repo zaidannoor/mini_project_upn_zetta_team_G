@@ -1,7 +1,7 @@
 <header>
     <nav>
         <div class="nav-title">
-            <button id="hamburger-icon" aria-label="toggle navbar" (click)="toggleButton($event)"><img src="../../assets/images/hamburger_icon.png"
+            <button id="hamburger-icon" aria-label="toggle navbar" (click)="toggleButton($event)"><img src="../../assets/img/hamburger_icon.png"
                     alt=""></button>
             <a href="/home">
                 <h1>Nusantara Resto</h1>
@@ -14,7 +14,7 @@
             <li *ngIf="isAuthed(); then thenBlock else elseBlock"></li>
             <ng-template #thenBlock><li><a href="/login" (click)="logout()">Logout</a></li></ng-template>
             <ng-template #elseBlock><li><a href="/login">Login</a></li></ng-template>
-            
         </ul>
     </nav>
+    <div class="hero-img" *ngIf="inHomePage()"></div>
 </header>

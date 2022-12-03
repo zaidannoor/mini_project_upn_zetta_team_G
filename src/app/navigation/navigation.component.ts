@@ -17,6 +17,10 @@ export class NavigationComponent implements OnInit {
     this.isHidden = !this.isHidden;
   }
 
+  inHomePage(){
+    return this.router.url === '/home' ? true : false;
+  }
+
   isAuthed(){
     return localStorage.getItem("token") ? true : false;
   }
