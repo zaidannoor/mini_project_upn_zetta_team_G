@@ -13,9 +13,9 @@
                 <div class="amount-form">
                     <h4>Order</h4>
                     <label for="amount-form">Jumlah</label>
-                    <input type="number" id="amount-form" placeholder="Amount to buy" formControlName="amount">
+                    <input type="number" id="amount-form" placeholder="Amount to buy" formControlName="amount" required>
                     <label for="note-form">Note</label>
-                    <input type="text" id="note-form" placeholder="Give your note" formControlName="note">
+                    <input type="text" id="note-form" placeholder="Give your note" formControlName="note" required>
                 </div>
                 <button id="{{ menu.id }}" class="amount-button" type="button" (click)="add($event)">Add to Cart</button>
             </form>

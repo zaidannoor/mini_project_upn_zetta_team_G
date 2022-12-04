@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { gql, Apollo } from 'apollo-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MenuService } from '../menu.service'
 import { CartService } from '../../cart/cart.service'
 import { SubSink } from 'subsink';
+import { Router } from '@angular/router';
+
 
 interface Menu {
   id: string;
@@ -33,7 +34,8 @@ export class MenuComponent implements OnInit {
 
   constructor(private menuService: MenuService, 
     private cartService: CartService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: Router,
     ) {
   }
 
@@ -43,10 +45,6 @@ export class MenuComponent implements OnInit {
       console.log(this.menus);
     })
 
-    // this.cartService.addToCart("6385bdd35ecfcf2c9ffeb6c3").subscribe((res) => {
-    //   console.log(res);
-    // })
-
     this.cartService.getAllTransaction().subscribe((res) => {
       console.log(res);
     })
@@ -55,7 +53,7 @@ export class MenuComponent implements OnInit {
   initFormGroup() {
     return this.fb.group({
       amount: [1],
-      note: ['-'],
+      note: [''],
     });
   }
 
@@ -64,12 +62,8 @@ export class MenuComponent implements OnInit {
     this.subs.sink = this.cartService
       .addToCart(event.target.id, order.amount, order.note)
       .subscribe((resp) => {
-        console.log(resp);
+          this.router.navigate(['/cart']);
       });
-    // this.cartService.addToCart(event.target.id).subscribe((res) => {
-    //   console.log(res);
-    // })
-    console.log(event.target.id);
   }
   
 }

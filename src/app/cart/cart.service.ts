@@ -32,6 +32,23 @@ export class CartService {
       }).pipe(map(data => data));
   }
 
+  deleteCart(id: any){
+    return this.apollo.mutate<any>(
+      {mutation: gql`
+        mutation{
+          deleteCart(
+            id: "${id}"
+          ){
+            id
+            order_date
+            status
+            total_price
+          }
+        }
+      `
+      }).pipe(map(data => data.data['deleteCart']));
+  }
+
   getAllTransaction(){
     return this.apollo.query<any>(
       {query: gql`
@@ -46,5 +63,54 @@ export class CartService {
         }
       `
       }).pipe(map(data => data.data['GetAllTransactions'].data));
+  }
+
+  getOrder(){
+    return this.apollo.query<any>(
+      {query: gql`
+        query{
+          GetOrder {
+            id
+            menu{
+              id
+              recipe_id{
+                id
+                recipe_name
+                price
+              }
+              amount
+              note
+            }
+            total_price
+          }
+        }
+      `
+      }).pipe(map(data => data.data['GetOrder']));
+  }
+
+  OrderNow(id: any){
+    return this.apollo.mutate<any>(
+      {mutation: gql`
+        mutation{
+          OrderNow(
+            id: "${id}"
+          ){
+            id
+            user_id{
+              email
+            }
+            menu{
+              recipe_id{
+                recipe_name
+              }
+              amount
+            }
+            order_date
+            status
+            total_price
+          }
+        }
+      `
+      }).pipe(map(data => data.data['OrderNow']));
   }
 }
