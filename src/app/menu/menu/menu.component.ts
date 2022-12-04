@@ -3,8 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MenuService } from '../menu.service'
 import { CartService } from '../../cart/cart.service'
 import { SubSink } from 'subsink';
-import { Router } from '@angular/router';
-
+import Swal from 'sweetalert2'
 
 interface Menu {
   id: string;
@@ -31,23 +30,23 @@ export class MenuComponent implements OnInit {
   private subs = new SubSink();
   menus: Menu[] = [];
   cartForm: FormGroup = this.initFormGroup();
+  loading: boolean = false;
 
   constructor(private menuService: MenuService, 
     private cartService: CartService,
     private fb: FormBuilder,
-    private router: Router,
     ) {
   }
 
   ngOnInit(): void {
+    this.loading = true;
     this.menuService.getAllMenu().subscribe((res) => {
       this.menus = res;
       console.log(this.menus);
+      this.loading = false;
     })
-
-    this.cartService.getAllTransaction().subscribe((res) => {
-      console.log(res);
-    })
+    
+    
   }
 
   initFormGroup() {
@@ -62,7 +61,18 @@ export class MenuComponent implements OnInit {
     this.subs.sink = this.cartService
       .addToCart(event.target.id, order.amount, order.note)
       .subscribe((resp) => {
-          this.router.navigate(['/cart']);
+          Swal.fire(
+            'Good job!',
+            'Your product has been added to cart',
+            'success'
+          )
+      }, (error) => {
+        Swal.fire(
+          'Oops!',
+          `${error.message}`,
+          'error'
+        )
+        console.log(error.message)
       });
   }
   

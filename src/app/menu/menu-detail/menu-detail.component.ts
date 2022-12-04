@@ -16,7 +16,7 @@ export class MenuDetailComponent implements OnInit {
   ngOnInit(): void {
     this.param = this.route.snapshot.params['id'];
     this.menuService.getMenuById(this.param).subscribe((res) => {
-      this.detailMenu = res.data['GetOneRecipes'];
+      this.detailMenu = res
       console.log(this.detailMenu)
     })
   }

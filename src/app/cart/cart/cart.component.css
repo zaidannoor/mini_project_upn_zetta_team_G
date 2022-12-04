@@ -34,6 +34,11 @@
     flex: 2;
 }
 
+.cart-item__body__title > p{
+    font-size: 14px;
+    color: lightslategray;
+}
+
 .cart-item__body__price{
     flex: 2;
 }
@@ -75,4 +80,10 @@
 button{
     border-radius: 5px;
     cursor: pointer;
+}
+
+.loading{
+    display: block;
+    margin: auto;
+    height: 300px;
 }

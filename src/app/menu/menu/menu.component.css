@@ -77,6 +77,12 @@ h1{
     cursor: pointer;
 }
 
+.loading{
+    display: block;
+    margin: auto;
+    height: 300px;
+}
+
 @media only screen and (max-width: 800px) {
     .menu-list {
       grid-template-columns: repeat(2, 1fr);

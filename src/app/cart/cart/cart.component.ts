@@ -12,17 +12,28 @@ export class CartComponent implements OnInit {
   cartItems: any;
   total_price: any;
   orderId: any;
+  loading: boolean = false;
   constructor(private cartService: CartService,
     private router: Router) { }
 
   ngOnInit(): void {
+    this.loading = true
     this.cartService.getOrder().subscribe((res) => {
-      this.carts = res;
-      this.cartItems = res.menu
-      this.total_price = res.total_price;
-      this.orderId = res.id;
-      console.log(this.carts);
-      console.log(this.cartItems);
+      if (res) {
+        this.carts = res;
+        this.cartItems = res.menu
+        this.total_price = res.total_price;
+        this.orderId = res.id;
+        console.log(this.carts);
+        console.log(this.cartItems);
+        this.loading = false
+      } else {
+        this.cartItems = []
+        this.loading = false
+      }
+    },(error) => {
+      console.log(error.message)
+      this.loading = false
     })
   }
 
@@ -46,7 +57,10 @@ export class CartComponent implements OnInit {
         this.router.navigate(['/menu']);
         })
     }
-    
+  }
+
+  nullCart(){
+    return this.cartItems?.length ? false : true
   }
 
 }

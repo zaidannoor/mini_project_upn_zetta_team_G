@@ -35,7 +35,7 @@ export class MenuService {
   }
 
   getMenuById(id : any){
-    return this.apollo.watchQuery<any>({query: gql`
+    return this.apollo.query<any>({query: gql`
     query{
       GetOneRecipes(id: "${id}"){
         id
@@ -47,6 +47,6 @@ export class MenuService {
       }
     }
     `
-  }).valueChanges;
+  }).pipe(map(data => data.data['GetOneRecipes']));
   }
 }
