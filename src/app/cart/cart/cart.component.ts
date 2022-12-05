@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CartService } from '../cart.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-cart',
@@ -38,25 +39,40 @@ export class CartComponent implements OnInit {
   }
 
   deleteCart(event: any){
-    let isConfirm = confirm('Are you sure want to delete ? ')
-    if (isConfirm) {
-      this.cartService.deleteCart(event.target.id).subscribe((res) => {
-      console.log(res);
-      location.reload()
-      })
-    }
-    
+    Swal.fire({
+      title: 'Are you sure want to delete ?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.cartService.deleteCart(event.target.id).subscribe((res) => {
+          location.reload();
+        })
+        
+      }
+    })      
   }
 
   checkout(event: any){
-    let isConfirm = confirm('Are you sure want to checkout ? ')
-    if (isConfirm) {
+    Swal.fire({
+      title: 'Are you sure want to checkout ?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes'
+    }).then((result) => {
+      if (result.isConfirmed) {
         this.cartService.OrderNow(event.target.id).subscribe((res) => {
-        console.log(res);
-        console.log(event.target.id);
-        this.router.navigate(['/menu']);
+          this.router.navigate(['/menu']);
         })
-    }
+        
+      }
+    })
+        
   }
 
   nullCart(){

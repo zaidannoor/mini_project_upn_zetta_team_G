@@ -40,6 +40,14 @@ export class MenuService {
       GetOneRecipes(id: "${id}"){
         id
         recipe_name
+        ingredients{
+          ids{
+            name
+            stock
+            status
+          }
+          stock_used
+        }
         status
         description
         image

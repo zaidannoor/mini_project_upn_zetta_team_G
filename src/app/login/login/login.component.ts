@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
-import { SubSink } from 'subsink';
+import Swal from 'sweetalert2';
 
 interface Payload {
   email: string;
@@ -15,7 +15,6 @@ interface Payload {
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  private subs = new SubSink();
   loginForm: FormGroup = this.initFormGroup();
   
   constructor(private fb: FormBuilder,
@@ -34,13 +33,19 @@ export class LoginComponent implements OnInit {
 
   login() {
     const payload: Payload = this.loginForm.value;
-    this.subs.sink = this.authService
+    this.authService
       .loginUser(payload.email, payload.password)
       .subscribe((resp) => {
         console.log(resp);
         if (resp) {
-          this.router.navigate(['/home']);
+          this.router.navigate(['/menu']);
         }
+      }, (error) => {
+        Swal.fire(
+          'Oops!',
+          `${error.message}`,
+          'error'
+        )
       });
   }
 

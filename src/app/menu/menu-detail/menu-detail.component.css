@@ -1,0 +1,38 @@
+.menu-detail{
+    border: 1px solid black;
+    margin: 30px;
+}
+
+.menu-detail__img > img{
+    display: block;
+    margin: auto;
+    width: 100%;
+}
+
+.menu-detail__body{
+    padding: 10px;
+}
+
+.menu-detail__body > h1{
+    font-size: 36px;
+    text-align: center;
+}
+
+.menu-detail__body-description{
+    font-size: 18px;
+}
+
+.ingeredients > h3{
+    font-size: 24px;
+}
+
+.ingeredient-list {
+    list-style-position: inside;
+}
+
+.menu-detail__footer > h3{
+    text-align: center;
+    font-size: 24px;
+}
+
+

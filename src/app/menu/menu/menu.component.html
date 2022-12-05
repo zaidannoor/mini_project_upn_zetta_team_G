@@ -13,10 +13,10 @@
             <form action="" [formGroup]="cartForm">
                 <div class="amount-form">
                     <h4>Order</h4>
-                    <input type="number" id="amount-form" placeholder="Amount to buy" formControlName="amount" required>
+                    <input type="number" id="amount-form" min="1" placeholder="Amount to buy" formControlName="amount" required>
                     <input type="text" id="note-form" placeholder="Give your note" formControlName="note" required>
                 </div>
-                <button id="{{ menu.id }}" class="amount-button" type="button" (click)="add($event)">Add to Cart</button>
+                <button id="{{ menu.id }}" class="amount-button" type="submit" (click)="add($event)">Add to Cart</button>
             </form>
         </div>
     </div>

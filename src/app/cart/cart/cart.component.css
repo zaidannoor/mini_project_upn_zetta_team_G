@@ -87,3 +87,7 @@ button{
     margin: auto;
     height: 300px;
 }
+
+.disable{
+    opacity: .5;
+}

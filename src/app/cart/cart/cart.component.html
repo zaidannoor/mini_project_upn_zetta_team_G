@@ -15,7 +15,7 @@
             </section>
             <section class="cart-checkout">
                 <div class="cart-total-price"><h3>Total Price Rp {{ total_price }}</h3></div>
-                <button id="{{ orderId }}" class="checkout-button" type="button" (click)="checkout($event)" [disabled]="nullCart()">Checkout</button>
+                <button id="{{ orderId }}" class="checkout-button" type="button" (click)="checkout($event)" [ngClass]="nullCart() ? 'disable' : '' " [disabled]="nullCart()">Checkout</button>
             </section>
         </ng-template>
 

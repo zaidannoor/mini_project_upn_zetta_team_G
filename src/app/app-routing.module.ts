@@ -23,7 +23,7 @@ const routes: Routes = [
     loadChildren:()=>import('./menu/menu.module').then(m=> m.MenuModule),
     canActivate: [AuthGuard],
   },
-  {path: '**', redirectTo: 'login', pathMatch: 'full'}
+  {path: '**', redirectTo: 'home', pathMatch: 'full'}
 ];
 
 @NgModule({

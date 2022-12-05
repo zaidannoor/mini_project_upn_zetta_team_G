@@ -1,2 +1,24 @@
-<p>{{ detailMenu?.id }}</p>
-<p>{{ detailMenu?.recipe_name }}</p>
+<div class="menu-detail">
+    <div class="menu-detail__img">
+        <img src="{{ detailMenu?.image }}" alt="">
+    </div>
+    <div class="menu-detail__body">
+        <h1>{{ detailMenu?.recipe_name }}</h1>
+        <p class="menu-detail__body-description">{{ detailMenu?.description }}</p>
+        <section class="ingeredients">
+            <h3>Ingeredients</h3>
+                <ol class="ingeredient-list">
+                    <li class="ingeredient-item" *ngFor="let menu of detailMenu?.ingredients">
+                        <label>{{ menu.ids.name }}</label>
+                        <p>Stock: {{ menu.ids.stock }}</p>
+                    </li>
+                </ol>      
+        </section>
+        
+    </div>
+    <div class="menu-detail__footer">
+        <h3>Rp {{ detailMenu?.price }}</h3>
+    </div>
+</div>
+
+
